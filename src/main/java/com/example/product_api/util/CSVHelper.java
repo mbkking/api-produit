@@ -1,6 +1,6 @@
 package com.example.product_api.util;
 
-import com.example.productapi.entity.Product;
+import com.example.product_api.entity.Product;
 import org.apache.commons.csv.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,13 +20,13 @@ public class CSVHelper {
             "AlertThreshold", "Category", "SKU", "Active"
     };
 
-    // ========== Vérifier si le fichier est un CSV ==========
+    //  Vérifier si le fichier est un CSV =
     public static boolean hasCSVFormat(MultipartFile file) {
         return TYPE.equals(file.getContentType()) ||
                 file.getOriginalFilename().endsWith(".csv");
     }
 
-    // ========== IMPORT : Lire un CSV et créer des Products ==========
+    //  IMPORT : Lire un CSV et créer des Products
     public static List<Product> csvToProducts(InputStream inputStream) {
         try (BufferedReader fileReader = new BufferedReader(
                 new InputStreamReader(inputStream, StandardCharsets.UTF_8));
@@ -48,7 +48,7 @@ public class CSVHelper {
                         .description(csvRecord.get("Description"))
                         .price(new BigDecimal(csvRecord.get("Price")))
                         .stock(Integer.parseInt(csvRecord.get("Stock")))
-                        .alertThreshold(parseInteger(csvRecord.get("AlertThreshold")))
+                        .alertThreshold(new BigDecimal(csvRecord.get("AlertThreshold")))
                         .category(csvRecord.get("Category"))
                         .sku(csvRecord.get("SKU"))
                         .active(parseBoolean(csvRecord.get("Active")))
@@ -64,7 +64,7 @@ public class CSVHelper {
         }
     }
 
-    // ========== EXPORT : Créer un CSV depuis des Products ==========
+    //  EXPORT : Créer un CSV depuis des Products
     public static ByteArrayInputStream productsToCSV(List<Product> products) {
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
              CSVPrinter csvPrinter = new CSVPrinter(
@@ -95,7 +95,7 @@ public class CSVHelper {
         }
     }
 
-    // ========== Méthodes utilitaires ==========
+
 
     private static Integer parseInteger(String value) {
         if (value == null || value.trim().isEmpty()) {

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    // ========== MÉTHODES EXISTANTES (sans pagination) ==========
+    //  MÉTHODES EXISTANTES sans pagination)
 
     Optional<Product> findByName(String name);
     Optional<Product> findBySku(String sku);
@@ -41,7 +41,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Long countByCategory(String category);
 
-    // ========== NOUVELLES MÉTHODES PAGINÉES ==========
+    //  NOUVELLES MÉTHODES PAGINÉES
 
     // Tous les produits avec pagination
      Page<Product> findAll(Pageable pageable);

@@ -10,16 +10,16 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PageResponse<T> {
-    private List<T> content;           // Les données de la page
-    private int pageNumber;            // Numéro de page actuelle (commence à 0)
-    private int pageSize;              // Taille de la page (nombre d'éléments)
-    private long totalElements;        // Nombre total d'éléments
-    private int totalPages;            // Nombre total de pages
-    private boolean first;             // Est-ce la première page ?
-    private boolean last;              // Est-ce la dernière page ?
-    private boolean empty;             // La page est-elle vide ?
+    private List<T> content;
+    private int pageNumber;
+    private int pageSize;
+    private long totalElements;
+    private int totalPages;
+    private boolean first;
+    private boolean last;
+    private boolean empty;
 
-    // Constructeur pratique à partir d'une Page Spring
+    // Constructeur
     public PageResponse(org.springframework.data.domain.Page<T> page) {
         this.content = page.getContent();
         this.pageNumber = page.getNumber();

@@ -10,10 +10,10 @@ import org.springframework.web.context.request.WebRequest;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-@RestControllerAdvice  // ← Intercepte TOUTES les exceptions de l'app
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    // ========== 404 NOT FOUND - Ressource non trouvée ==========
+    //  404 NOT FOUND -
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleResourceNotFoundException(
             ResourceNotFoundException ex,
@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    // ========== 409 CONFLICT - Ressource déjà existante ==========
+    //  409 CONFLICT - R
     @ExceptionHandler(ResourceAlreadyExistsException.class)
     public ResponseEntity<ErrorResponse> handleResourceAlreadyExistsException(
             ResourceAlreadyExistsException ex,
@@ -47,7 +47,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
     }
 
-    // ========== 400 BAD REQUEST - Validation échouée ==========
+    //  400 BAD REQUEST -
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidationException(
             MethodArgumentNotValidException ex,
@@ -77,7 +77,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
-    // ========== 500 INTERNAL SERVER ERROR - Erreur générique ==========
+    //  500 INTERNAL SERVER ERROR
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGlobalException(
             Exception ex,
